@@ -10,5 +10,6 @@ interface AppUserRepository : CrudRepository<AppUser, Long> {
 }
 
 interface RoleRepository : CrudRepository<Role, Long> {
+    fun findByName(username: String): Role?
     fun findAllByOrderByNameDesc(): Iterable<Role>
 }
