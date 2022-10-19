@@ -30,9 +30,7 @@ class AppUserService(val userRepository: AppUserRepository, val roleRepository: 
         logger.info { "saving role $roleName to user $username" }
         val user = findUserByUsername(username)!!
         val role = roleRepository.findByName(roleName)
-
-        // TODO how the hell I add role to user.roles???????
-
+        user.roles.add(role!!)
         userRepository.save(user)
     }
 }
