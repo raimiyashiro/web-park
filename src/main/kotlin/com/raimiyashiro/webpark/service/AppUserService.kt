@@ -16,9 +16,9 @@ class AppUserService(val userRepository: AppUserRepository, val roleRepository: 
 
     fun findUserByUsername(username: String): AppUser? = userRepository.findByUsername(username)
 
-    fun saveUser(user: AppUser) {
+    fun saveUser(user: AppUser): AppUser {
         logger.info { "saving user ${user.name}" }
-        userRepository.save(user)
+        return userRepository.save(user)
     }
 
     fun saveRole(role: Role) {
