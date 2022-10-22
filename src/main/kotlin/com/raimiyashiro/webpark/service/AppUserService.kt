@@ -21,16 +21,17 @@ class AppUserService(val userRepository: AppUserRepository, val roleRepository: 
         return userRepository.save(user)
     }
 
-    fun saveRole(role: Role) {
+    fun saveRole(role: Role): Role {
         logger.info { "saving role ${role.name}" }
-        roleRepository.save(role)
+        return roleRepository.save(role)
     }
 
-    fun addRoleToUser(username: String, roleName: String) {
+    fun addRoleToUser(username: String, roleName: String) : AppUser {
+        // TODO: understand Kotlin Null Safety
         logger.info { "saving role $roleName to user $username" }
         val user = findUserByUsername(username)!!
         val role = roleRepository.findByName(roleName)
         user.roles.add(role!!)
-        userRepository.save(user)
+        return userRepository.save(user)
     }
 }
